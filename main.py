@@ -237,11 +237,11 @@ class AppEcoTech:
             
             # modificar solo si hay algo
             if nuevo_correo or nuevo_rol or nueva_pass:
-                self.gestor.modificar_usuario(
-                    id_usuario=id_usuario,
+                self.gestor.modificar(
+                    id_usr=id_usuario,
                     nuevo_correo=nuevo_correo if nuevo_correo else None,
                     nuevo_rol=nuevo_rol if nuevo_rol else None,
-                    nueva_password=nueva_pass if nueva_pass else None
+                    nuevo_pass=nueva_pass if nueva_pass else None
                 )
             else:
                 print("no se cambio nada")
@@ -276,7 +276,7 @@ class AppEcoTech:
             confirmacion = input(f"Seguro que quieres borrar a '{usuario.nombre_usuario}'? (s/n): ").strip().lower()
             
             if confirmacion == 's':
-                self.gestor.eliminar_usuario(id_usuario)
+                self.gestor.eliminar(id_usuario)
             else:
                 print("Cancelado")
                 
