@@ -1,10 +1,26 @@
 # Consumo de API externa - Calidad del Aire
-# API: AQICN (NO usar OpenWeatherMap como dice la profe)
-# Justificacion: datos de contaminacion son importantes para EcoTech
+# API: AQICN (World Air Quality Index)
+# URL: https://aqicn.org/api/
+#
+# JUSTIFICACION DE LA INTEGRACION:
+# EcoTech Solutions es una empresa de gestion ambiental que necesita 
+# datos REALES de contaminacion atmosferica para:
+# 1. Tomar decisiones sobre estrategias de reduccion de emisiones
+# 2. Analizar niveles de PM2.5, PM10, O3, NO2, SO2 y CO
+# 3. Evaluar riesgos de salud publica en diferentes ciudades
+# 4. Generar reportes ambientales para clientes
+# 5. Cumplir con regulaciones de monitoreo ambiental
+#
+# La API AQICN proporciona datos de mas de 100 paises en tiempo real,
+# lo cual es fundamental para nuestro servicio de consultoria ambiental.
 
 import requests
 import json
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Error para cuando falla la API
 class APIError(Exception):
@@ -13,8 +29,10 @@ class APIError(Exception):
 # Clase para consumir la API de calidad del aire
 class ServicioAPI:
     def __init__(self):
+        # URL base de la API
         self.url = "https://api.waqi.info"
-        self.token = "demo"  # token de prueba
+        # Token protegido en .env (DATO SENSIBLE)
+        self.token = os.getenv('API_TOKEN', 'demo')  # 'demo' es fallback para pruebas
     
     # Obtener datos de calidad del aire
     def get_calidad_aire(self, ciudad="Mexico"):
