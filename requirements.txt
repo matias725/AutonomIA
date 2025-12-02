@@ -1,0 +1,5 @@
+# Requisitos mínimos
+python>=3.8
+
+# Nota: `tkinter` y `sqlite3` forman parte de la librería estándar de Python en la mayoría
+# de instalaciones de CPython en Windows.
